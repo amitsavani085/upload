@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>FORM</title>
+
+	<style type="text/css">
+		
+		body
+		{
+			font-family: arial;
+			color: #212F3C;
+			font-weight: bold;
+			font-size: 20px;
+		}
+		.body
+		{
+			height: 800px;
+			width: 550px;
+			border-radius: 50px;
+			background-color: #5D6D7E;
+			margin: auto;
+			margin-top: 30px;
+			position: relative;
+			border: 10px solid #34495E;
+		}
+
+		.m-30
+		{
+			margin: 50px;			
+		}
+
+		.text-box
+		{
+			height: 25px;
+			font-size: 15px;
+			font-family: arial;
+		}
+		.submit
+		{
+			bottom: 20;
+			top: 100;
+		}
+
+	</style>
+
+	<script type="text/javascript">
+		
+		function valid() {
+			
+			var name = document.getElementById('name').value;
+			var email = document.getElementById('email').value;
+			var mobile = document.getElementById('mobile').value;
+			var password = document.getElementById('password').value;
+			var address = document.getElementById('address').value;
+			var pincode = document.getElementById('pincode').value;
+
+			var genderm = document.getElementById('male').value;
+			var genderf = document.getElementById('female').value;
+
+			var city = document.getElementById('city_select');
+			var strUser = city.options[city.selectedIndex].value;
+
+			var i;
+			var chks = document.getElementsByName('hobby'); 
+
+			var regname = /^[a-zA-Z ]{2,30}$/;
+			var regemial = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+			var regmobile = /^[0]?[789]\d{9}$/;
+
+			var regpassword = /(?=^.{4,12}$)((?=.*\d)(?=.*[A-Z])(?=.*[a-z])|(?=.*\d)(?=.*[^A-Za-z0-9])(?=.*[a-z])|(?=.*[^A-Za-z0-9])(?=.*[A-Z])(?=.*[a-z])|(?=.*\d)(?=.*[A-Z])(?=.*[^A-Za-z0-9]))^.*/;
+			// var minnumberofchars = 4;
+			// var mixnumberofchars = 12;
+			// var regxpass =  /^[a-zA-Z0-9!@#$%^&*]{6,16}$/;
+
+			var regaddress = /^[a-zA-Z0-9\s\,\''\-]*$/;
+			var regpincode = /^(\d{4}|\d{6})$/;
+
+
+
+
+			// console.log(regpassword.test(password));
+			// console.log(genderm);
+
+			if(name=='')
+			{
+				alert("Plase Enter your name");
+				return false;
+			}
+			else if(!regname.test(name))
+			{
+				alert("enter valid name");
+				return false;
+			}
+
+			if(email=='')
+			{
+				alert("Plase Enter your email");
+				return false;
+			}
+			else if(!regemial.test(email))
+			{
+				alert("enter valid email id");
+				return false;
+			}
+
+			if(mobile=='')
+			{
+				alert("Plase Enter your mobile");
+				return false;
+			}
+			else if(!regmobile.test(mobile))
+			{
+				alert("enter valid mobile number");
+				return false;
+			}
+
+			if(password=='')
+			{
+				alert("Plase Enter your password");
+				return false;
+			}
+			else if(!regpassword.test(password))
+			{
+				alert("enter valid  password");
+				return false;
+			}
+
+			// if(password.length < minnumberofchars || password.length > mixnumberofchars)
+			// {
+			// 	alert("Plase Enter your password");
+			// 	return false;
+			// }
+			// else if(!regxpass.test(password))
+			// {
+			// 	alert("enter valid  password");
+			// 	return false;
+			// }
+
+			if(address=='')
+			{
+				alert("Plase Enter your address");
+				return false;
+			}
+			else if(!regaddress.test(address))
+			{
+				alert("enter valid  address");
+				return false;
+			}
+
+			if(pincode=='')
+			{
+				alert("Plase Enter your pincode");
+				return false;
+			}
+			else if(!regpincode.test(pincode))
+			{
+				alert("enter valid  pincode");
+				return false;
+			}
+
+			if(genderm.checked==false && genderf.checked==false)
+			{
+				alert("You must select male or female");
+            	return false;
+			}
+
+			if(strUser==0)
+			{
+				alert("Plase select city");
+				return false;
+			}
+
+			for(i = 0; i<chks.length; i++)
+			{
+				if(chks[i].checked)
+				{
+					return true;
+				}
+				else
+				{
+					alert("plese select your hobby");
+					return false;
+				}
+			}
+
+		}
+
+	</script>
+
+</head>
+<body>
+
+	<form class="body" onsubmit="return valid()">
+		<div class="m-30">
+			<span>  Name : </span>
+			<input type="text" id="name" placeholder="Enter Name">
+		</div>
+		<div class="m-30">
+			<span>  Email : </span>
+			<input type="text" id="email" placeholder="Enter Email">
+		</div>
+		<div class="m-30">
+			<span>  Contact : </span>
+			<input type="text" id="mobile" placeholder="Enter Mobile Number">
+		</div>
+		<div class="m-30">
+			<span>   Password : </span>
+			<input type="text" id="password" placeholder="Enter password">
+		</div>
+		<div class="m-30">
+			<span>   Address : </span>
+			<input type="text" id="address" placeholder="Enter Address">
+		</div>
+		<div class="m-30">
+			<span>   Pin Code : </span>
+			<input type="text" id="pincode" placeholder="Enter pincode">
+		</div>
+		<div class="m-30">
+			<span>  Gender : </span>
+			<input type="radio" id="male" value="Male" name="male">Male
+			<input type="radio" id="female" value="Female" name="male">Female
+		</div>
+		<div class="m-30 m-t">
+			<span>  Hobby : </span>
+			<input type="checkbox" name="hobby" value="cricket">Cricket
+			        <input type="checkbox" name="hobby" value="reading">Reading
+			        <input type="checkbox" name="hobby" value="singing">Singing
+		</div>
+		<div class="m-30">
+			<span>  City : </span>
+			<select id="city_select">
+				<option value="0">--Select City--</option>
+				<option value="1">Surat</option>
+				<option value="2">Vapi</option>
+				<option value="3">Valsad</option>
+				<option value="4">Vadodra</option>
+			</select>
+		</div>
+		<div class="m-30 submit">
+			<input type="submit" name="" value="submit">
+		</div>
+	</form> 
+
+</body>
+</html>
